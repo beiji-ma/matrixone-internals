@@ -44,12 +44,12 @@ This "OID-first" pattern offers several key advantages:
 #### Example:
 
 ```mql
-list bus * * * select id,policy where policy == "Engineering"
+temp query bus * * * select id,policy where policy == "Engineering"
 ```
 
 This query first resolves all matching object headers using the OID filter. If the result is large, only object IDs and policies are loaded. Further commands (e.g., `print`, `expand`, or scripting operations) can trigger deeper object loads **from memory**, not DB.
 
-This is why even “list” and “print” in MatrixOne are not mere output tools — they participate in staged resolution of objects, leveraging the B-Tree to avoid redundant retrievals.
+This is why even “temp query” and “print” in MatrixOne are not mere output tools — they participate in staged resolution of objects, leveraging the B-Tree to avoid redundant retrievals.
 
 The result is a highly efficient, stepwise execution model — very different from ORM-based object graph traversal.
 
@@ -57,7 +57,7 @@ The result is a highly efficient, stepwise execution model — very different fr
 
 It's common for newcomers to panic when trace logs say: `Executing full scan on table lxbo_XXXX`.
 
-But this is **not** what it seems. In many cases, this message simply indicates a bulk load or prefetch operation — triggered by a query that intentionally lacks filtering (e.g., `list bus * * *`).
+But this is **not** what it seems. In many cases, this message simply indicates a bulk load or prefetch operation — triggered by a query that intentionally lacks filtering (e.g., `temp query bus * * *`).
 
 The goal isn’t to “scan” in the SQL sense, but to populate the **local B-Tree index** for subsequent in-memory evaluation.
 
