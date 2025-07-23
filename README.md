@@ -1,5 +1,7 @@
 # MatrixOne Internals — Architecture, Semantics, and Performance
 
+![Inside MatrixOne — Series B: Architecture Deep Dive | OID • B-Tree • Vault • DSL • Performance](./assets/cover-inside-matrixone.png)
+
 Welcome to **matrixone-internals**, an independent technical deep-dive into the core architecture, semantics, and performance characteristics of the **MatrixOne** PLM platform.
 
 > **Disclaimer:** This project is not affiliated with or endorsed by Dassault Systèmes. MatrixOne is not an open-source system, and its official documentation is not publicly available. The content here is based on independent exploration, professional deployment experience, and educated inferences drawn from real-world behavior, system traces, and architectural best practices.
