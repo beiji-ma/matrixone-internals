@@ -62,7 +62,7 @@ This series tells the story **behind the design**, giving architects, developers
 ---
 
 ## 🔍 Start Here
-- [Series Foreword](./foreword.md)
+- [Series Foreword](./docs/foreword.md)
 - [Chapter 3: OID is Everything](./docs/chapter_3_oid_is_everything.md)
 - [Chapter 4: Local B-Trees and the Memory-Resident Index](./docs/chapter_4_local_b_trees_and_memory_index.md)
 
