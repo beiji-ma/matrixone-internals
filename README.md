@@ -62,9 +62,11 @@ This series tells the story **behind the design**, giving architects, developers
 ---
 
 ## 🔍 Start Here
-- [Chapter 1: Unix, Oracle, Git](./chapter-1-unix-oracle-git.md)
-- [Chapter 3: OID is Everything](./chapter-3-oid.md)
-- [Appendix: Glossary](./appendix-glossary.md)
+- [Series Foreword](./foreword.md)
+- [Chapter 3: OID is Everything](./docs/chapter_3_oid_is_everything.md)
+- [Chapter 4: Local B-Trees and the Memory-Resident Index](./docs/chapter_4_local_b_trees_and_memory_index.md)
+
+- [Appendix: Glossary](./docs/appendix-glossary.md)
 
 ---
 
