@@ -1,6 +1,7 @@
 # MatrixOne Internals — Architecture, Semantics, and Performance
 
 ![Inside MatrixOne — Series B: Architecture Deep Dive | OID • B-Tree • Vault • DSL • Performance](./assets/cover-inside-matrixone.png)
+> ℹ️ **Diagram Note:** OID structure shown is simplified. Only `vaultHigh` + `vaultLow` = Vault ID; `objectHigh` + `objectLow` = signed Object ID.
 
 Welcome to **matrixone-internals**, an independent technical deep-dive into the core architecture, semantics, and performance characteristics of the **MatrixOne** PLM platform.
 
