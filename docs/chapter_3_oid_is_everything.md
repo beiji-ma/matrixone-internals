@@ -86,11 +86,18 @@ Corresponding SQL lookup:
 SELECT * FROM lxbo_0f80d388 WHERE id = -128643013;
 ```
 
-When using Java or C, you must use long-compatible types to avoid signed overflow:
+When using Java or C, you must use long-compatible types carefully — but the correct result for MatrixOne should **match the signed 32-bit integer** as stored in the database:
 
-int oid = (63573 << 16) | 4155;  // yields -128643013 long oid = ((long) 63573 << 16) | 4155; // correct: 4166324283
+```c
+// In C or Java (signed 32-bit view)
+int oid = (63573 << 16) | 4155;   // ✅ yields -128643013 — matches database
 
-````
+// In Java, using long avoids overflow, but gives unsigned value
+long oid = ((long) 63573 << 16) | 4155; // ⚠️ yields 4166324283 — does not match database record
+```
+
+MatrixOne’s MQL engine is implemented in C/C++, and follows signed 32-bit logic when interpreting OID components. Therefore, **the version yielding `-128643013` is correct** for all runtime queries and comparisons.
+`
 
 Python implementation:
 
@@ -146,11 +153,19 @@ It’s not just fast — it’s structure-aware.
 
 ### 3.4 Comparisons: Oracle ROWID and Snowflake ID
 
-Oracle’s ROWID was one of the earliest attempts to expose physical identity for query speed.
-
-Systems like Snowflake ID (used by Facebook, Twitter, etc.) later adopted a similar concept — encoding shard, time, and sequence into a compact format. But compared to MatrixOne’s structurally derived OID, they operate at a flatter layer: focused on generation, not traversal.
+\$1
 
 MatrixOne’s OID stands in that lineage — but applies it to a multi-table, semantically structured PLM world.
+
+However, one should be cautious when interpreting OID beyond its intended scope.
+Because it reflects **physical deployment structure**, OID can change across migrations, replications, or refactoring.
+
+Newcomers to MatrixOne may mistakenly persist OIDs as attributes to establish relationships — instead of using `connect` relationships.
+This can become catastrophic if vaults are reassigned or data is reshuffled.
+
+Such misuse often stems from a fundamental misunderstanding of **layered architecture** — especially the distinction between logical relationships and physical identifiers. Without a mental model of MatrixOne's **deployment topology**, engineers may treat OIDs as stable foreign keys, which they are not.
+
+> This is not hypothetical — real-world systems (including some OOTB logic) have exhibited such misuse. — but applies it to a multi-table, semantically structured PLM world.
 
 ---
 
@@ -189,6 +204,15 @@ Once predicates resolve to OIDs, the rest of the system simply follows — no SQ
 
 ### 3.7 Room for Modernization?
 
+Before we talk about modernization, let’s revisit a subtle but fascinating detail about how MatrixOne assigns OIDs.
+
+When creating a new business object, the engine often sends **four simultaneous insert statements** to the internal `lxoid` table. The purpose is not to store four objects — but to preemptively reserve a usable OID.
+
+This “multi-insert for OID” trick likely reflects a kind of **fault-tolerant design**: instead of waiting for a round-trip retry if one insert fails, the engine sends four at once and uses the first successful result, discarding the rest.
+
+Some might worry about waste — but in PLM systems, object creation is infrequent compared to internet-scale workloads. And unused rows can always be cleaned up during maintenance windows.
+
+
 While the “multi-insert for OID” approach reflects a solid high-availability mindset, modern distributed systems may favor:
 
 - Background allocation pools
@@ -202,4 +226,24 @@ This is not about upgrading for trend’s sake — but understanding what alread
 ---
 
 Refer to Series Foreword for scope and disclaimer.
+
+---
+
+### ✍️ Author’s Note
+
+My understanding of the OID structure didn’t come from documentation — because none was available. Around 2013–2014, driven by pure curiosity and the need to troubleshoot performance behavior in real systems, I reverse-engineered the logic behind OID composition through observation, trial, and tooling.
+
+This culminated in a short encode/decode note I shared internally at Sony Nordic, where we had been running large-scale MatrixOne deployments.
+
+Later, while exploring Oracle's internal architecture (especially through DSI materials), I began to appreciate this design not just as a convenience, but as a form of **deployment-aware identity encoding** — a structure that blends storage abstraction with runtime locality awareness.
+
+What struck me most was how early this design emerged.
+
+Long before systems like **Snowflake** popularized structured IDs, or **MySQL** users traded tips on `ip2int` and `int2ip`, MatrixOne had already embedded system topology, vault partitioning, and access semantics into a compact, bitwise OID — hiding power in plain sight.
+
+> The beauty of this design lies not in convenience, but in **intentional abstraction**.
+
+This note is not meant as personal display, but as a reminder:
+
+> The goal of tracing back design is not self-validation — but the pursuit of underlying structure.
 
