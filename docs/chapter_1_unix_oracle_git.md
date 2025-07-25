@@ -8,10 +8,12 @@ In this chapter, we explore the architectural DNA shared by Unix, Oracle, and Gi
 
 ## 1. The Unix Model: Atomic Tools and Composability
 
-MatrixOne, much like Unix, favors building **small, focused commands** that can be flexibly composed. This is seen in its rich MQL command set and tight TCL integration:
+MatrixOne, much like Unix, favors building **small, focused commands** that can be flexibly composed. This reflects a Unix-like philosophy of doing one thing well. Its MQL interpreter can run single commands in isolation, making debugging easier, while broader workflow control, variable scope, and other programming language features are provided by TCL. As its name *tclsh* suggests, TCL effectively acts as a cross-platform shell.
+
+MatrixOne's large collection of TCL scripts — including the critical **spinner** tool used for schema import/export and data migration — demonstrate this philosophy in action. These scripts encapsulate repeatable tasks and workflows, further strengthening the composability of the platform.
 
 - Dozens of discrete commands (`add bus`, `connect`, `temp query`, etc.) each solve a narrow problem.
-- TCL scripting acts as glue, allowing commands to be chained, parameterized, and extended.
+- TCL scripting provides orchestration, allowing commands to be chained, parameterized, and extended.
 
 For example:
 
@@ -20,13 +22,13 @@ temp query bus * * * where "current == 'Approved'"
 connect bus ... -from ${QUERY_RESULT} -to ...
 ```
 
-> Just as Unix pipes data between processes, MatrixOne "pipes" object sets between commands.
-
 This design makes MatrixOne:
 
 - **Composable:** complex workflows can be expressed by chaining small commands.
 - **Scriptable:** TCL integration means pipelines can branch, loop, and recover on error.
 - **Predictable:** each command has a well-defined contract, making orchestration emergent rather than ad hoc.
+
+> Note: TCL itself comes with defaults (e.g., floating-point precision) that can affect calculation accuracy. Most of the time you won’t need to worry, but it’s worth being aware. This is also where a previously identified security vulnerability (details omitted) was found.
 
 > *"If you can pipe it, you can evolve it."*
 
@@ -105,19 +107,21 @@ MatrixOne does maintain the concept of workspaces and snapshots, but these are m
 
 MatrixOne also maintains another physically addressable construct — `lxfile_xxxx`. This is a dedicated subsystem within the File Collaboration Server (FCS), with its own layered logic and physical behaviors. Its addressability enables segment-level coordination and high-throughput storage orchestration. FCS itself is a standalone subsystem with both logical and physical specializations, and we will revisit this topic in more depth later. At a high level, the existence of FCS and `lxfile_xxxx` illustrates MatrixOne’s broader **addressability principle**, which is crucial for scaling distributed storage and retrieval.
 
-### Looking Forward: An Opportunity for MatrixOne
+### Looking Forward: An Important Direction for MatrixOne
 
 While current workspaces and snapshots function effectively as scoped caches, there is a clear opportunity for evolution. By adopting immutable content-addressed structures — similar in spirit to Git — MatrixOne could:
 
 - Strengthen reproducibility and historical traceability
 - Simplify rollback and branching semantics
 - Enable a richer form of semantic version control
+- Introduce **immutable object storage** patterns within FCS, ensuring files and binaries are fully versioned and tamper-proof
+- Modernize ENOVIA’s versioning mechanisms, moving beyond rigid version increments to more flexible, traceable models
 
-Such a shift would be a major re-architecture, but it could unlock an order-of-magnitude improvement in MatrixOne’s ability to manage change across distributed environments.
+Such a shift would be a major re-architecture and is not the only path forward, but it represents an **important direction** for MatrixOne’s ability to manage change across distributed environments.
 
 Git is fast not because it's optimized, but because its **content-addressed design** makes lookups trivial: a hash can be resolved directly in the object database without indirection.
 
-The similarities between MatrixOne’s subsystems (such as FCS) and Git’s object graph are more a case of convergent design than direct influence, but Git also highlights a future direction MatrixOne could consider.
+The similarities between MatrixOne’s subsystems (such as FCS) and Git’s object graph are more a case of convergent design than direct influence, but Git also highlights a potential direction MatrixOne could consider.
 
 > *"Truth isn’t stored. It’s addressed."*
 
@@ -134,6 +138,8 @@ Unix, Oracle, and Git share no syntax, no market, and no interface. But they do 
 - **Semantics**: behavior that reflects intent
 
 MatrixOne wasn’t modeled directly on any of them — but it resonates with all of them.
+
+To fully understand why MatrixOne’s architecture has endured, it is essential to see how **semantic modeling** underpins all these aspects. This foundational concept will be explored in depth in a dedicated article, *MatrixOne and the Rise of Practical Semantic Modeling*, which serves as the cornerstone for the rest of this series.
 
 > *"Software lasts when its structure means more than its interface."*
 
