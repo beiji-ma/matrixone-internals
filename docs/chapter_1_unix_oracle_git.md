@@ -1,5 +1,7 @@
 # Chapter 1: What Unix, Oracle, and Git Teach Us About Software That Lasts
 
+> **导读：** 本章通过 Unix、Oracle 和 Git 三个长期存活的系统，探讨了它们的共同架构理念，并揭示 MatrixOne 如何承袭并升华这些原则。文章厚度较大，建议先通读小节标题和加粗要点，再按兴趣深入细节。
+
 Some systems disappear in five years. Others last decades. What makes the difference?
 
 In this chapter, we explore the architectural DNA shared by Unix, Oracle, and Git — three very different systems that have stood the test of time — and how MatrixOne resonates with this lineage in surprising, even invisible ways.
@@ -92,6 +94,8 @@ MatrixOne's OID plays a similar role, but with higher-level abstraction:
 - Designed for distributed execution, not single-node disk I/O
 
 > *"If your data has no address, it has no leverage."*
+
+> **Field Note:** Addressable data structures are widely used in the industry, especially for large-scale product structures and BOM datasets, but the abstraction depth and implementation quality vary greatly. In the landmark 2011–2013 QOROS (CQAC) Automotive Project (a milestone for Dassault's single BOM dataset practice), Dassault architects applied similar encoding strategies to entire vehicle structures. Their approach was widely praised, yet it also highlighted that there is still significant potential for performance gains if **structure-first design philosophy** is applied more deeply. Such improvements would go far beyond surface-level changes like replacing XML or adopting other so-called "BOM improvements." This insight ties directly back to the core theme of this chapter: structure must take precedence over interface.
 
 ---
 
