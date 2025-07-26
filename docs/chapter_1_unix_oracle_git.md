@@ -32,13 +32,15 @@ This design makes MatrixOne:
 
 > *"If you can pipe it, you can evolve it."*
 
+> **Architect's Insight:** Being able to move freely between abstract design principles and concrete implementation is what distinguishes strong architecture. MatrixOne’s Unix-like small-tool philosophy is more than convenience — it enforces structure and composability at every level.
+
 ---
 
 ## 2. Oracle: Locality and Identity via ROWID
 
 Oracle's original innovation wasn’t just SQL — it was the concept of **addressable data**.
 
-- Every row had a **ROWID**, a physical locator
+- Every row had a **ROWID**, a physical locator. Oracle officially refers to ROWID as a *pseudocolumn* because it is automatically available for every table row without being explicitly defined.
 - This enabled index efficiency, update targeting, and access predictability
 
 MatrixOne borrows from this idea:
@@ -142,4 +144,6 @@ MatrixOne wasn’t modeled directly on any of them — but it resonates with all
 To fully understand why MatrixOne’s architecture has endured, it is essential to see how **semantic modeling** underpins all these aspects. This foundational concept will be explored in depth in a dedicated article, *MatrixOne and the Rise of Practical Semantic Modeling*, which serves as the cornerstone for the rest of this series.
 
 > *"Software lasts when its structure means more than its interface."*
+
+> *MatrixOne’s longevity is no accident — its secret lies in structure taking precedence over interface.*
 
