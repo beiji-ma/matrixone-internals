@@ -36,6 +36,8 @@ This design makes MatrixOne:
 
 > **Architect's Insight:** Being able to move freely between abstract design principles and concrete implementation is what distinguishes strong architecture. MatrixOne’s Unix-like small-tool philosophy is more than convenience — it enforces structure and composability at every level.
 
+**Summary:** The Unix model shows how small, composable tools can scale into powerful systems. MatrixOne uses this philosophy as a foundation for flexibility and resilience.
+
 ---
 
 ## 2. Oracle: Locality and Identity via ROWID
@@ -97,6 +99,8 @@ MatrixOne's OID plays a similar role, but with higher-level abstraction:
 
 > **Field Note:** Addressable data structures are widely used in the industry, especially for large-scale product structures and BOM datasets, but the abstraction depth and implementation quality vary greatly. In the landmark 2011–2013 QOROS (CQAC) Automotive Project (a milestone for Dassault's single BOM dataset practice), Dassault architects applied similar encoding strategies to entire vehicle structures. Their approach was widely praised, yet it also highlighted that there is still significant potential for performance gains if **structure-first design philosophy** is applied more deeply. Such improvements would go far beyond surface-level changes like replacing XML or adopting other so-called "BOM improvements." This insight ties directly back to the core theme of this chapter: structure must take precedence over interface.
 
+**Summary:** Oracle’s ROWID illustrates how addressability improves performance and structure-awareness. MatrixOne applies a similar concept through its OID design.
+
 ---
 
 ## 3. Git: Semantic Trees and Content-Addressed Truth
@@ -133,6 +137,8 @@ The similarities between MatrixOne’s subsystems (such as FCS) and Git’s obje
 
 > **Related Reading:** [MatrixOne and the Rise of Practical Semantic Modeling](#) — Semantic modeling is the foundation of MatrixOne. This earlier article provides a deeper exploration and is highly recommended for readers who want to understand the core philosophy behind MatrixOne.
 
+**Summary:** Git’s content-addressed trees highlight the power of immutable semantics. MatrixOne could expand its versioning and storage subsystems in this direction.
+
 ---
 
 ## 4. Lasting Software Has Shape
@@ -150,4 +156,6 @@ To fully understand why MatrixOne’s architecture has endured, it is essential 
 > *"Software lasts when its structure means more than its interface."*
 
 > *MatrixOne’s longevity is no accident — its secret lies in structure taking precedence over interface.*
+
+**Summary:** Long-lasting software embodies strong shape, structure, and semantics. MatrixOne carries this philosophy forward through its design choices.
 
