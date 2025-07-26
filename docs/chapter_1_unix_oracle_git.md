@@ -135,7 +135,7 @@ The similarities between MatrixOne’s subsystems (such as FCS) and Git’s obje
 
 > *"Truth isn’t stored. It’s addressed."*
 
-> **Related Reading:** [MatrixOne and the Rise of Practical Semantic Modeling](#) — Semantic modeling is the foundation of MatrixOne. This earlier article provides a deeper exploration and is highly recommended for readers who want to understand the core philosophy behind MatrixOne.
+> **Related Reading:** [MatrixOne and the Rise of Practical Semantic Modeling](./matrixone_semantic_modeling.md) — Semantic modeling is the foundation of MatrixOne. This earlier article provides a deeper exploration and is highly recommended for readers who want to understand the core philosophy behind MatrixOne.
 
 **Summary:** Git’s content-addressed trees highlight the power of immutable semantics. MatrixOne could expand its versioning and storage subsystems in this direction.
 
