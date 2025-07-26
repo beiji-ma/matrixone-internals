@@ -1,6 +1,6 @@
 # Chapter 1: What Unix, Oracle, and Git Teach Us About Software That Lasts
 
-> **导读：** 本章通过 Unix、Oracle 和 Git 三个长期存活的系统，探讨了它们的共同架构理念，并揭示 MatrixOne 如何承袭并升华这些原则。文章厚度较大，建议先通读小节标题和加粗要点，再按兴趣深入细节。
+> **Overview:** This chapter examines three long-lasting systems — Unix, Oracle, and Git — and highlights the architectural principles they share. It also shows how MatrixOne inherits and enhances these ideas. The article is dense, so start by skimming the section titles and bolded points, then dive into the details of interest.
 
 Some systems disappear in five years. Others last decades. What makes the difference?
 
