@@ -1,7 +1,5 @@
 # Chapter 3 — OID is Everything — Semantics at CPU Speed
 
----
-
 ### 3.1 The Problem with Names
 
 In traditional enterprise systems, we often rely on human-readable identifiers like `PartNumber`, `DocumentName`, or `TNR`. These identifiers are intuitive — but not performant. Behind every name lies an expensive lookup, a database index, a join, or worse — a cache miss.
