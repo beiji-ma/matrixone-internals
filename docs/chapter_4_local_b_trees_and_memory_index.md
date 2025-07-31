@@ -1,4 +1,4 @@
-Title: Chapter 4 — Local B-Trees and the Memory-Resident Index
+# Chapter 4 — Local B-Trees and the Memory-Resident Index
 
 ### 4.1 What is a Local B-Tree?
 

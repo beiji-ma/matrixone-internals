@@ -1,4 +1,4 @@
-Title: Chapter 3 — OID is Everything — Semantics at CPU Speed
+# Chapter 3 — OID is Everything — Semantics at CPU Speed
 
 ---
 
