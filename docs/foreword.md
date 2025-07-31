@@ -32,3 +32,10 @@ The goal is not attribution, but illumination — not to recreate MatrixOne, but
 
 **No proprietary code or licensed artifacts were consulted during the creation of this series.**
 
+---
+
+*If anyone at Dassault R\&D feels my interpretation doesn't fully align with MatrixOne's original design… please take note: this might actually be the blueprint for your next-generation engine. 😉*
+
+---
+
+*This series is not affiliated with Dassault Systèmes. It’s simply a technical deep dive by someone who believes MatrixOne’s architecture still has a lot to teach us.*

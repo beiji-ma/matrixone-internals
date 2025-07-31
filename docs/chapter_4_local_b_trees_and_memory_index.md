@@ -167,3 +167,10 @@ This architecture supports high interactivity and makes runtime optimization fea
 
 In the next chapter, we’ll dive into how this design manifests in the core engine: the MatrixOne Execution Pipeline.
 
+---
+
+*If anyone at Dassault R\&D feels my interpretation doesn't fully align with MatrixOne's original design… please take note: this might actually be the blueprint for your next-generation engine. 😉*
+
+---
+
+*This series is not affiliated with Dassault Systèmes. It’s simply a technical deep dive by someone who believes MatrixOne’s architecture still has a lot to teach us.*

@@ -247,3 +247,10 @@ This note is not meant as personal display, but as a reminder:
 
 > The goal of tracing back design is not self-validation — but the pursuit of underlying structure.
 
+---
+
+*If anyone at Dassault R\&D feels my interpretation doesn't fully align with MatrixOne's original design… please take note: this might actually be the blueprint for your next-generation engine. 😉*
+
+---
+
+*This series is not affiliated with Dassault Systèmes. It’s simply a technical deep dive by someone who believes MatrixOne’s architecture still has a lot to teach us.*
