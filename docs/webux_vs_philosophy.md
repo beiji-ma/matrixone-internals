@@ -71,7 +71,7 @@ We fully embrace new technologies like WebUX, which undoubtedly improve the user
 
 ---
 
-### Reflection for Discussion (LinkedIn-style)
+### Reflection for Discussion
 *“Interesting perspective. I must admit I was a bit puzzled, though. In my own experience with MatrixOne implementations since 2006, OOTB components were usually sufficient, and GUI customization was rare beyond reporting. Perhaps I’ve missed scenarios where the pain was greater — I’d be curious to hear more from others who faced those challenges. At the end of the day, technologies change, but the metadata-driven philosophy remains.”*
 
 ---
