@@ -303,12 +303,12 @@ flowchart TB
 
     subgraph S[ENGINEERING SEMANTICS LAYER - STRUCTURAL SPINE]
         direction LR
-        S1[Global Identity Space (OID/GOID)]
-        S2[Type System & Attribute Dictionary]
-        S3[Lifecycle & Policy Semantics]
-        S4[Version / Lineage Model]
+        S1[Global Identity Space<br/>OID + GOID]
+        S2[Type System<br/>Attribute Dictionary]
+        S3[Lifecycle<br/>Policy Semantics]
+        S4[Version<br/>Lineage Model]
         S5[Semantic Transaction Boundary]
-        S6[Runtime Introspection & Trace]
+        S6[Runtime Introspection<br/>Trace]
 
         S1 --> S2 --> S3 --> S4 --> S5 --> S6
     end
