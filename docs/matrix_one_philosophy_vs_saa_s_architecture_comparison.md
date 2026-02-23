@@ -294,46 +294,74 @@ The Engineering Semantics Layer is not a middle utility layer. It is the structu
 ```mermaid
 flowchart TB
 
-    %% Top: Velocity Zone
-    subgraph V[Velocity Zone — Rapid Change]
+    %% =========================
+    %% ZONES
+    %% =========================
+
+    subgraph V[Velocity Zone - Rapid Change]
         direction TB
         V1[UI / Clients]
         V2[APIs / Gateways]
         V3[Domain Microservices]
     end
 
-    %% Middle: Semantic Spine
-    subgraph S[ENGINEERING SEMANTICS LAYER — Structural Spine]
+    subgraph S[ENGINEERING SEMANTICS LAYER - STRUCTURAL SPINE]
         direction TB
-        S1[Global Identity Space (OID / GOID)]
-        S2[Type System & Attribute Dictionary]
-        S3[Lifecycle & Policy Semantics]
-        S4[Version / Lineage Model]
-        S5[Semantic Transaction Boundary]
-        S6[Runtime Introspection & Trace]
+        S1[Global Identity Space<br/>OID / GOID]
+        S2[Type System &<br/>Attribute Dictionary]
+        S3[Lifecycle &<br/>Policy Semantics]
+        S4[Version /<br/>Lineage Model]
+        S5[Semantic Transaction<br/>Boundary]
+        S6[Runtime Introspection<br/>& Trace]
     end
 
-    %% Bottom: Scale Zone
-    subgraph I[Scale Zone — Horizontal Infrastructure]
+    subgraph I[Scale Zone - Horizontal Infrastructure]
         direction TB
-        I1[Databases]
-        I2[Object Storage / Vault]
-        I3[Event Streams]
-        I4[Containers / Cloud Runtime]
+        I1[(Databases)]
+        I2[(Object Storage / Vault)]
+        I3[(Event Streams)]
+        I4[(Containers / Cloud Runtime)]
     end
 
-    %% Vertical alignment
-    V --> S
-    S --> I
+    %% =========================
+    %% STRUCTURAL SPINE (VERTICAL)
+    %% =========================
 
-    %% Explicit structural dependency
+    V ==> S
+    S ==> I
+
+    %% =========================
+    %% SEMANTIC DEPENDENCIES (EXPLICIT)
+    %% =========================
+
     V3 --> S1
     V3 --> S2
     V3 --> S3
     V3 --> S4
+    V3 --> S5
 
-    I3 -. events .-> S4
+    %% Events feed lineage, but do not define truth
+    I3 -. contributes evidence .-> S4
+
+    %% Runtime trace lives with execution
+    S6 --> I4
+
+    %% =========================
+    %% STYLING (MANIFESTO EMPHASIS)
+    %% =========================
+
+    classDef zone fill:#0b0f14,stroke:#3a4756,stroke-width:1px,color:#e6edf3;
+    classDef spine fill:#111827,stroke:#ffffff,stroke-width:2px,color:#ffffff;
+    classDef infra fill:#0b0f14,stroke:#3a4756,stroke-width:1px,color:#e6edf3;
+
+    class V zone;
+    class I infra;
+    class S spine;
+
+    linkStyle 0 stroke:#ffffff,stroke-width:3px;
+    linkStyle 1 stroke:#ffffff,stroke-width:3px;
 ```
+
 
 ## Manifest Interpretation
 
