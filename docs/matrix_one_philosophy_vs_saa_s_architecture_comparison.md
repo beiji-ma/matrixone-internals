@@ -287,45 +287,50 @@ This is not regression. It is architectural synthesis.
 
 # Part VII — Structural Diagram: Engineering Semantics as Structural Spine
 
-Below is a more declarative, manifesto-style diagram.
-
-The Engineering Semantics Layer is not a middle utility layer. It is the structural spine of the system.
+Below is a GitHub-safe diagram optimized for readability (wide layout, minimal clutter).
 
 ```mermaid
-flowchart TB
+%%{init: {"flowchart": {"nodeSpacing": 40, "rankSpacing": 60}} }%%
+flowchart LR
 
-    %% Clean, stable layout version (GitHub-safe)
-
+    %% Left column: Velocity
     subgraph V[Velocity Zone - Rapid Change]
-        direction LR
-        V1[UI / Clients] --> V2[APIs / Gateways] --> V3[Domain Microservices]
+        direction TB
+        V1[UI / Clients]
+        V2[APIs / Gateways]
+        V3[Domain Microservices]
+        V1 --> V2 --> V3
     end
 
+    %% Middle column: Semantic Spine
     subgraph S[ENGINEERING SEMANTICS LAYER - STRUCTURAL SPINE]
-        direction LR
+        direction TB
         S1[Global Identity Space<br/>OID + GOID]
         S2[Type System<br/>Attribute Dictionary]
         S3[Lifecycle<br/>Policy Semantics]
         S4[Version<br/>Lineage Model]
-        S5[Semantic Transaction Boundary]
+        S5[Semantic Transaction<br/>Boundary]
         S6[Runtime Introspection<br/>Trace]
-
         S1 --> S2 --> S3 --> S4 --> S5 --> S6
     end
 
+    %% Right column: Scale
     subgraph I[Scale Zone - Horizontal Infrastructure]
-        direction LR
-        I1[(Databases)] --> I2[(Object Storage / Vault)] --> I3[(Event Streams)] --> I4[(Containers / Cloud Runtime)]
+        direction TB
+        I1[(Databases)]
+        I2[(Object Storage / Vault)]
+        I3[(Event Streams)]
+        I4[(Containers / Cloud Runtime)]
+        I1 --> I2 --> I3 --> I4
     end
 
-    %% Vertical structural spine
+    %% Structural spine across columns
     V3 --> S1
     S6 --> I1
 
-    %% Events inform lineage
+    %% Events inform lineage (evidence, not truth)
     I3 -. contributes evidence .-> S4
 ```
-
 
 ## Manifest Interpretation
 
