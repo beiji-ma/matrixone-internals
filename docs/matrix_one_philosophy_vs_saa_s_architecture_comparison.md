@@ -289,48 +289,7 @@ This is not regression. It is architectural synthesis.
 
 Below is a GitHub-safe diagram optimized for readability (wide layout, minimal clutter).
 
-```mermaid
-%%{init: {"flowchart": {"nodeSpacing": 40, "rankSpacing": 60}} }%%
-flowchart LR
-
-    %% Left column: Velocity
-    subgraph V[Velocity Zone - Rapid Change]
-        direction TB
-        V1[UI / Clients]
-        V2[APIs / Gateways]
-        V3[Domain Microservices]
-        V1 --> V2 --> V3
-    end
-
-    %% Middle column: Semantic Spine
-    subgraph S[ENGINEERING SEMANTICS LAYER - STRUCTURAL SPINE]
-        direction TB
-        S1[Global Identity Space<br/>OID + GOID]
-        S2[Type System<br/>Attribute Dictionary]
-        S3[Lifecycle<br/>Policy Semantics]
-        S4[Version<br/>Lineage Model]
-        S5[Semantic Transaction<br/>Boundary]
-        S6[Runtime Introspection<br/>Trace]
-        S1 --> S2 --> S3 --> S4 --> S5 --> S6
-    end
-
-    %% Right column: Scale
-    subgraph I[Scale Zone - Horizontal Infrastructure]
-        direction TB
-        I1[(Databases)]
-        I2[(Object Storage / Vault)]
-        I3[(Event Streams)]
-        I4[(Containers / Cloud Runtime)]
-        I1 --> I2 --> I3 --> I4
-    end
-
-    %% Structural spine across columns
-    V3 --> S1
-    S6 --> I1
-
-    %% Events inform lineage (evidence, not truth)
-    I3 -. contributes evidence .-> S4
-```
+![Engineering Semantics Structural Spine](https://github.com/beiji-ma/matrixone-internals/blob/br_fixed_the_issue_with_mermaid_graph/assets/Engineering%20system%20diagram%20breakdown.png)
 
 ## Manifest Interpretation
 
@@ -354,48 +313,7 @@ Modern distributed systems naturally drift toward entropy when semantic control 
 
 Below is a contrast diagram illustrating structural entropy versus semantic coherence.
 
-```mermaid
-flowchart LR
-
-    %% Entropy Side
-    subgraph E[Entropy — Service-Centric Drift]
-        direction TB
-        E1[Service A]
-        E2[Service B]
-        E3[Service C]
-        E4[Local IDs]
-        E5[Duplicated Logic]
-        E6[Implicit Contracts]
-        E1 --> E4
-        E2 --> E4
-        E3 --> E4
-        E1 --> E5
-        E2 --> E5
-        E3 --> E6
-    end
-
-    %% Divider
-    D[Structural Boundary]
-
-    %% Coherence Side
-    subgraph C[Coherence — Semantic-Centric Structure]
-        direction TB
-        C1[Service A]
-        C2[Service B]
-        C3[Service C]
-        C4[Global Identity Space]
-        C5[Shared Semantic Contracts]
-        C6[Explicit Lineage & Policy]
-        C1 --> C4
-        C2 --> C4
-        C3 --> C4
-        C1 --> C5
-        C2 --> C5
-        C3 --> C6
-    end
-
-    E --- D --- C
-```
+![Entropy vs Coherence in System Design](https://github.com/beiji-ma/matrixone-internals/blob/br_fixed_the_issue_with_mermaid_graph/assets/Entropy%20vs%20coherence%20in%20system%20design.png)
 
 ## Interpretation
 
